@@ -6,6 +6,10 @@ if (!isset($_SESSION['invoice'])) {
 }
 
 $invoice = $_SESSION['invoice'];
+
+// Cek apakah ada diskon atau tidak
+$diskon_persen = $invoice['durasi_menginap'] > 3 ? "10%" : "0%";
+
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +50,10 @@ $invoice = $_SESSION['invoice'];
                     <td>: <?php echo $invoice['breakfast'] ? 'Ya' : 'Tidak'; ?></td>
                 </tr>
                 <tr>
+                    <td><strong>Diskon</strong></td>
+                    <td>: <?php echo $diskon_persen; ?></td>
+                </tr>
+                <tr>
                     <td><strong>Total Bayar</strong></td>
                     <td>: Rp <?php echo number_format($invoice['total'], 0, ',', '.'); ?></td>
                 </tr>
@@ -55,3 +63,4 @@ $invoice = $_SESSION['invoice'];
     </div>
 </body>
 </html>
+  
